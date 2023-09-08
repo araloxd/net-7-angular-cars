@@ -1,0 +1,37 @@
+<h3>Add User</h3>
+
+
+  <div>
+    <label for="name">
+      Name
+    </label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+
+  <div>
+    <label for="email">
+       Email
+    </label>
+    <input id="email" type="email" formControlName="email">
+  </div>
+
+  <button class="button" (click)="addUser()">Add User</button>
+
+
+
+
+<h3>User List</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+    </tr>
+  </tbody>
+</table>

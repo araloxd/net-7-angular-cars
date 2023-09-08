@@ -1,0 +1,13 @@
+<div class="vehicle-list">
+    <h2>Vehicles</h2>
+    <ul>
+      <li *ngFor="let vehicle of vehicles">
+        <strong>Owner's Name:</strong> {{ vehicle?.ownerName }}<br>
+        <strong>Manufacturer:</strong> {{ vehicle.manufacturer?.name }}<br>
+        <strong>Year of Manufacture:</strong> {{ vehicle.yearOfManufacture }}<br>
+        <strong>Weight (kg):</strong> {{ vehicle.weight }}<br>
+        <strong>Category:</strong> {{ vehicle.category?.name }}<br>
+      </li>
+    </ul>
+  </div>
+  
