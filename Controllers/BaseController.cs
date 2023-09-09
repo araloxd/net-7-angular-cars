@@ -48,7 +48,7 @@ public class BaseController<TEntity, TRepository> : ControllerBase
 
     // PUT: api/[Entity]/1
     [HttpPut("{id}")]
-    public virtual IActionResult Modify(int id, TEntity entity)
+    protected virtual IActionResult Modify(int id, TEntity entity)
     {
         if (id != entity.Id)
         {
@@ -68,7 +68,7 @@ public class BaseController<TEntity, TRepository> : ControllerBase
 
     // DELETE: api/[Entity]/1
     [HttpDelete("{id}")]
-    public virtual IActionResult Delete(int id)
+    protected virtual IActionResult Delete(int id)
     {
         try
         {

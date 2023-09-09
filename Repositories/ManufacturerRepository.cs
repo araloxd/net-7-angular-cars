@@ -1,4 +1,5 @@
-﻿using net_7_angular_cars.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using net_7_angular_cars.Contexts;
 using net_7_angular_cars.Models;
 
 namespace net_7_angular_cars.Repositories
@@ -9,6 +10,11 @@ namespace net_7_angular_cars.Repositories
         public async Task<IEnumerable<Manufacturer>> GetManufacturers()
         {
             return await GetAllAsync();
+        }
+
+        public async Task<Manufacturer?> GetManufacturerByNameAsync(string manufacturerName)
+        {
+            return await _dbSet.FirstOrDefaultAsync(m => m.Name == manufacturerName);
         }
     }
 }

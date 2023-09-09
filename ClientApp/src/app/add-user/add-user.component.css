@@ -1,41 +1,38 @@
-h3 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  form {
-    max-width: 400px;
-    margin: 0 auto;
+.user-add {
+    margin: 20px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 5px #888888;
     background-color: #fff;
   }
   
-  div {
-    margin-bottom: 20px;
+  h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
   }
   
   label {
-    display: block;
-    font-weight: bold;
     margin-bottom: 5px;
+    font-weight: bold;
   }
   
   input[type="text"],
   input[type="email"] {
-    width: 100%;
     padding: 10px;
+    margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
   }
   
-  button.button {
-    display: block;
-    width: 100%;
-    padding: 10px;
+  button {
+    padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -44,7 +41,6 @@ h3 {
     font-size: 18px;
   }
   
-  button.button:hover {
+  button:hover {
     background-color: #0056b3;
   }
-  

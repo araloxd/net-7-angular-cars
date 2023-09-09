@@ -1,1 +1,39 @@
-<p>add-edit-category works!</p>
+<h3>Edit Category</h3>
+<form (ngSubmit)="updateCategory()">
+  <div>
+    <label for="name">Name</label>
+    <input type="text" id="name" [(ngModel)]="selectedCategory.name" name="name" required>
+  </div>
+  <div>
+    <label for="icon">Icon</label>
+    <input type="text" id="icon" [(ngModel)]="selectedCategory.icon" name="icon" required>
+  </div>
+  <div>
+    <label for="minWeight">Minimum Weight</label>
+    <input type="number" id="minWeight" [(ngModel)]="selectedCategory.minWeight" name="minWeight" required>
+  </div>
+  <div>
+    <label for="maxWeight">Maximum Weight</label>
+    <input type="number" id="maxWeight" [(ngModel)]="selectedCategory.maxWeight" name="maxWeight" required>
+  </div>
+  <button type="submit">Update Category</button>
+  <button type="submit" style="margin-left: 30px;" (click)="isAdd=true">Add Category</button>
+</form>
+
+
+<ng-container *ngIf="categories">
+    <h3>List Categories</h3>
+    <ul>
+      <li *ngFor="let category of categories">
+        <div class="category">
+          <span>{{ category.name }}</span>
+          <span>Min:{{ category.minWeight }}</span>
+          <span>Max:{{ category.maxWeight }}</span>
+          <img [src]="category.icon" alt="Category Icon" class="category-icon">
+          <button (click)="editCategory(category)">Edit</button>
+          <button (click)="deleteCategory(category)">Delete</button>
+        </div>
+      </li>
+    </ul>
+  </ng-container>
+  

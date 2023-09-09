@@ -10,10 +10,17 @@ namespace net_7_angular_cars.Controllers
     {
 
         private readonly IRepository<Vehicle> _vehicleRepository;
+        private readonly ManufacturerRepository _manufacturerRepository;
+        private readonly CategoryRepository _categoryRepository;
 
-        public VehiclesController(IRepository<Vehicle> vehicleRepository)
+        public VehiclesController(
+            IRepository<Vehicle> vehicleRepository,
+            IRepository<Manufacturer> manufacturerRepository,
+            IRepository<Category> categoryRepository)
         {
             _vehicleRepository = vehicleRepository;
+            _manufacturerRepository = manufacturerRepository as ManufacturerRepository;
+            _categoryRepository = categoryRepository as CategoryRepository;
         }
 
         [HttpGet]
@@ -35,10 +42,27 @@ namespace net_7_angular_cars.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Vehicle> Add(Vehicle vehicle)
+        public new async Task<ActionResult<Vehicle>> Add(Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
+                Category category = await _categoryRepository.GetCategoryByWeight(vehicle.Weight);
+                if(category == null)
+                {
+                    throw new Exception("Not Category in that weight range");
+                }
+
+                Manufacturer manufacturer = await _manufacturerRepository.GetManufacturerByNameAsync(vehicle.Manufacturer.Name);
+
+                if (category == null)
+                {
+                    throw new Exception("Not found manufacturer");
+                }
+
+                vehicle.Category = category;
+                vehicle.Manufacturer = manufacturer;
+
+                //vehicle.CategoryId = category.Id;
                 _vehicleRepository.Add(vehicle);
                 return CreatedAtAction(nameof(GetById), new { id = vehicle.Id }, vehicle);
             }

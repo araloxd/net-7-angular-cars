@@ -1,7 +1,9 @@
 export interface Category {
     id: number;
     name: string;
-    description: string;
-    iconUrl: string;
+    icon: string;
+    minWeight: number;
+    maxWeight: number;
   }
+  
   

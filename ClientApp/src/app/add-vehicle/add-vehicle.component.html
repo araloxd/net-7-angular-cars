@@ -1,1 +1,26 @@
-<p>add-vehicle works!</p>
+<!-- add-vehicle.component.html -->
+
+<h2>Add Vehicle</h2>
+
+<form [formGroup]="vehicleForm" (ngSubmit)="onSubmit()">
+  <label for="ownerName">Owner's Name:</label>
+  <input type="text" id="ownerName" formControlName="ownerName" required>
+
+  <div>
+    <label for="manufacturer">Manufacturer:</label>
+    <select id="manufacturer" formControlName="manufacturer" required>
+      <option value="" disabled selected>Select a manufacturer</option>
+      <option *ngFor="let manufacturer of manufacturers" [value]="manufacturer.name">
+        {{ manufacturer.name }}
+      </option>
+    </select>
+  </div>
+
+  <label for="yearOfManufacture">Year of Manufacture:</label>
+  <input type="number" id="yearOfManufacture" formControlName="yearOfManufacture" required>
+
+  <label for="weight">Weight (kg):</label>
+  <input type="number" id="weight" formControlName="weight" required step="0.01">
+
+  <button type="submit">Add Vehicle</button>
+</form>

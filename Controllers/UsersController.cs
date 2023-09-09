@@ -8,13 +8,16 @@ namespace net_7_angular_cars.Controllers
     [ApiController]
     public class UsersController : BaseController<User, IRepository<User>>
     {
-        public UsersController(IRepository<User> userRepository): base(userRepository){}
+
+        UserRepository repository;
+        public UsersController(UserRepository userRepository): base(userRepository){
+            repository = userRepository;
+        }
 
         [HttpPost]
         public new async Task Create(User entity)
         {
-            await Repository.AddAsync(entity);
+            repository.AddUserAsync(entity);
         }
-
     }
 }

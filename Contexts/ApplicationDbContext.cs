@@ -40,6 +40,10 @@ namespace net_7_angular_cars.Contexts
               .Property(c => c.Icon)
               .HasMaxLength(255);
 
+            modelBuilder.Entity<Manufacturer>()
+               .Property(m => m.Id)
+               .UseIdentityColumn();
+
             modelBuilder.Entity<Manufacturer>().HasData(
               new Manufacturer
               {

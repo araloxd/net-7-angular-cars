@@ -68,5 +68,15 @@ namespace net_7_angular_cars.Repositories
         {
             throw new NotImplementedException();
         }
+
+        Task IRepository<Vehicle>.Update(int id, Vehicle vehicle)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Update(Vehicle vehicle)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -6,9 +6,8 @@
         Task<IEnumerable<T>> GetAllAsync();
         T GetById(int id);
         void Add(T vehicle);
-        Task AddAsync(T vehicle);
-
-        void Update(int id, T vehicle);
+        Task Update(int id, T entity);
+        Task Update(T entity);
         void Delete(int id);
     }
 }

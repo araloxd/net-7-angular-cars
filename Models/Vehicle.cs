@@ -7,9 +7,7 @@ namespace net_7_angular_cars.Models
         [Required(ErrorMessage = "Owner's Name is required.")]
         public string OwnerName { get; set; }
         [Required(ErrorMessage = "Year of manufacture is required.")]
-        [Range(1900, 2100, ErrorMessage = "Year must be between 1900 and 2100.")]
         public int YearOfManufacture { get; set; }
-        [Range(1900, 2100, ErrorMessage = "Year must be between 1900 and 2100.")]
         public decimal Weight { get; set; }
         // Category
         public Category? Category { get; set; }

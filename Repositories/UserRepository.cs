@@ -8,5 +8,10 @@ namespace net_7_angular_cars.Repositories
         public UserRepository(ApplicationDbContext context) : base(context)
         {
         }
+
+        public new async Task AddUserAsync(User entity)
+        {
+            await AddAsync(entity);
+        }
     }
 }

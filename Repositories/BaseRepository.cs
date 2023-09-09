@@ -7,7 +7,7 @@ namespace net_7_angular_cars.Repositories
     public class BaseRepository<T> : IRepository<T> where T : BaseModel
     {
         private readonly ApplicationDbContext _context;
-        private readonly DbSet<T> _dbSet;
+        protected readonly DbSet<T> _dbSet;
 
         public BaseRepository(ApplicationDbContext context)
         {
@@ -23,31 +23,34 @@ namespace net_7_angular_cars.Repositories
             }
 
             _dbSet.Add(entity);
+            _context.SaveChanges();
         }
 
-        public async Task AddAsync(T entity)
+        protected virtual async Task AddAsync(T entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            await _dbSet.AddRangeAsync(entity);
+            //await _dbSet.AddRangeAsync(entity);
+            await _dbSet.AddAsync(entity);
             await _context.SaveChangesAsync().ConfigureAwait(false);
         }
 
-        public void Delete(int id)
+        public virtual void Delete(int id)
         {
             var entity = _dbSet.Find(id);
             if (entity != null)
             {
                 _dbSet.Remove(entity);
+                _context.SaveChanges();
             }
         }
 
         public IEnumerable<T> GetAll()
         {
-            return  _dbSet.ToList();
+            return _dbSet.ToList();
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
@@ -60,14 +63,24 @@ namespace net_7_angular_cars.Repositories
             return _dbSet.Find(id);
         }
 
-        public void Update(int id, T entity)
+        public async Task Update(T entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
+            _context.Update(entity);
+            _context.SaveChanges();
+        }
 
+        public async Task Update(int id, T entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
             _context.Entry(entity).State = EntityState.Modified;
+            await _context.SaveChangesAsync().ConfigureAwait(false);
         }
     }
 }

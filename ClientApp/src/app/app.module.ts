@@ -21,6 +21,7 @@ import { AddEditCategoryComponent } from './add-edit-category/add-edit-category.
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
+    AddUserComponent,
     ListVehiclesComponent,
     AddVehicleComponent,
     AddEditCategoryComponent
